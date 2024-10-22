@@ -18,7 +18,6 @@ export const App: React.FC = () => {
     'all' | 'completed' | 'active'
   >('all');
   const [searchQuery, setSearchQuery] = useState('');
-  const [loadingUser, setLoadingUser] = useState(false);
 
   useEffect(() => {
     const fetchTodos = async () => {
@@ -43,14 +42,6 @@ export const App: React.FC = () => {
       todo.title.toLowerCase().includes(searchQuery.toLowerCase()),
     );
 
-  const handleTodoSelect = async (todo: Todo) => {
-    setSelectedTodos(todo);
-    setLoadingTodos(true);
-
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    setLoadingUser(false);
-  };
-
   return (
     <div className="section">
       <div className="container">
@@ -70,7 +61,7 @@ export const App: React.FC = () => {
             {loadingTodos ? (
               <Loader />
             ) : (
-              <TodoList todos={filteredTodos} onTodoSelect={handleTodoSelect} />
+              <TodoList todos={filteredTodos} onTodoSelect={setSelectedTodos} />
             )}
           </div>
         </div>
@@ -78,7 +69,6 @@ export const App: React.FC = () => {
       {selectedTodos && (
         <TodoModal
           todo={selectedTodos}
-          loading={loadingUser}
           onClose={() => setSelectedTodos(null)}
         />
       )}
