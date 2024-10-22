@@ -61,7 +61,11 @@ export const App: React.FC = () => {
             {loadingTodos ? (
               <Loader />
             ) : (
-              <TodoList todos={filteredTodos} onTodoSelect={setSelectedTodos} />
+              <TodoList
+                todos={filteredTodos}
+                onTodoSelect={setSelectedTodos}
+                selectedTodo={selectedTodos}
+              />
             )}
           </div>
         </div>
