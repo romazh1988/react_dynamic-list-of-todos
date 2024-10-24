@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/indent */
 /* eslint-disable max-len */
 import React, { useEffect, useState } from 'react';
 import 'bulma/css/bulma.css';
@@ -8,15 +9,14 @@ import { TodoFilter } from './components/TodoFilter';
 import { TodoModal } from './components/TodoModal';
 import { Loader } from './components/Loader';
 import { Todo } from './types/Todo';
+import { TodoStatus } from './types/TodoStatus';
 import { getTodos } from './api';
 
 export const App: React.FC = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [loadingTodos, setLoadingTodos] = useState(true);
   const [selectedTodos, setSelectedTodos] = useState<Todo | null>(null);
-  const [filterStatus, setFilterStatus] = useState<
-    'all' | 'completed' | 'active'
-  >('all');
+  const [filterStatus, setFilterStatus] = useState<TodoStatus>('all');
   const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
