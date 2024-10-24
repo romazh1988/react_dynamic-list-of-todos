@@ -4,4 +4,5 @@ export interface Todo {
   completed: boolean;
   userId: number;
   user: string;
+  selected?: boolean;
 }
